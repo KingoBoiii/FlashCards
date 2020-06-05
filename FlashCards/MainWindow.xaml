@@ -11,7 +11,7 @@
         TextOptions.TextFormattingMode="Ideal" TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        mc:Ignorable="d" Title="Cisco Flash Cards" WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d" Title="{Binding Title}" WindowStartupLocation="CenterOwner"
         MinHeight="{Binding MinHeight,FallbackValue=450}" MinWidth="{Binding MinWidth,FallbackValue=700}" 
         Height="450" Width="700">
     <Grid>

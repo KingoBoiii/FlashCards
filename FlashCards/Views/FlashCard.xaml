@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:FlashCards.Views"
+             xmlns:viewmodels="clr-namespace:FlashCards.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="700">
     <Grid>
@@ -17,25 +18,15 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding QuestionText,FallbackValue='Test'}" Grid.Row="0" Style="{DynamicResource MaterialDesignHeadline5TextBlock}"/>
                 <Separator Grid.Row="1"/>
-                <Grid x:Name="_ButtonGrid_" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2">
+                <Grid x:Name="_ButtonGrid_" Grid.Row="2">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="150"/>
-                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="300"/>
-                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Height="130" Style="{StaticResource MaterialDesignOutlinedButton}" Padding="10" Margin="10" Grid.Row="0" Grid.Column="0">
-                        <TextBlock Text="Hello, world"/>
-                    </Button>
-                    <Button Height="130" Style="{StaticResource MaterialDesignOutlinedButton}" Padding="10" Margin="10" Grid.Row="0" Grid.Column="1">
-                        <TextBlock Text="Hello, world"/>
-                    </Button>
-                    <Button Height="130" Style="{StaticResource MaterialDesignOutlinedButton}" Padding="10" Margin="10" Grid.Row="1" Grid.Column="0">
-                        <TextBlock Text="Hello, world"/>
-                    </Button>
-                    <Button Height="130" Style="{StaticResource MaterialDesignOutlinedButton}" Padding="10" Margin="10" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
             </Grid>
         </materialDesign:Card>
