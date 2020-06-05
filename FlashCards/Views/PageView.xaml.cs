@@ -13,17 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using MaterialDesignExtensions;
-
-namespace FlashCards {
+namespace FlashCards.Views {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PageView.xaml
     /// </summary>
-    // public partial class MainWindow : Window {
-    public partial class MainWindow : MaterialDesignExtensions.Controls.MaterialWindow {
-        public MainWindow() {
+    public partial class PageView : UserControl {
+        public PageView() {
             InitializeComponent();
-            this.DataContext = new ViewModels.WindowViewModel();
+            this.DataContext = new ViewModels.PageViewModel();
         }
     }
 }

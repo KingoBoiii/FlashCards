@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Diagnostics;
 using System.Windows.Controls;
 
@@ -24,7 +23,6 @@ namespace FlashCards.ViewModels {
         public FlashCardViewModel(Grid buttonGrid) {
             this.m_ButtonGrid = buttonGrid;
             NewFlashCard();
-            Trace.WriteLine(m_ButtonGrid.Height);
         }
 
         void NewFlashCard() {
@@ -33,6 +31,7 @@ namespace FlashCards.ViewModels {
             System.Random random = new System.Random();
             int randomNumber = random.Next(0, FlashCardLibrary.HardwareForkortelser.Count);
             m_FlashCard = FlashCardLibrary.HardwareForkortelser[randomNumber];
+            OnPropertyChanged(nameof(QuestionText));
 
             for (int i = 0; i < m_FlashCard.Buttons.Count; i++) {
                 AddButtonToGrid(m_ButtonGrid, m_FlashCard.Buttons[i], i, OnButtonClicked);

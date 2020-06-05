@@ -11,6 +11,8 @@
 
         public WindowViewModel() {
             m_Model = new WindowModel();
+
+            PageViewModel.SetPage(new Views.HomeView());
         }
     }
 }

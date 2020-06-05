@@ -9,26 +9,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="700">
     <Grid>
-        <materialDesign:Card Grid.Row="1" Padding="8" Margin="6">
-            <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding QuestionText,FallbackValue='Test'}" Grid.Row="0" Style="{DynamicResource MaterialDesignHeadline5TextBlock}"/>
+            <Separator Grid.Row="1"/>
+            <Grid x:Name="_ButtonGrid_" Grid.Row="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding QuestionText,FallbackValue='Test'}" Grid.Row="0" Style="{DynamicResource MaterialDesignHeadline5TextBlock}"/>
-                <Separator Grid.Row="1"/>
-                <Grid x:Name="_ButtonGrid_" Grid.Row="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
             </Grid>
-        </materialDesign:Card>
+        </Grid>
     </Grid>
 </UserControl>
