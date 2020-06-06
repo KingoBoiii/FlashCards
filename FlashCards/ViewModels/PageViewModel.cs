@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlashCards.ViewModels {
+﻿namespace FlashCards.ViewModels {
     public class PageViewModel : BaseViewModel {
         public static PageViewModel Instance { get; private set; }
 

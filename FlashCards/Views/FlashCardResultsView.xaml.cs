@@ -15,12 +15,12 @@ using System.Windows.Shapes;
 
 namespace FlashCards.Views {
     /// <summary>
-    /// Interaction logic for AppBar.xaml
+    /// Interaction logic for FlashCardResultsView.xaml
     /// </summary>
-    public partial class AppBar : UserControl {
-        public AppBar() {
+    public partial class FlashCardResultsView : UserControl {
+        public FlashCardResultsView() {
             InitializeComponent();
-            this.DataContext = new ViewModels.AppBarViewModel(ButtonOpenMenu, ButtonCloseMenu);
+            this.DataContext = new ViewModels.FlashCardResultViewModel();
         }
     }
 }

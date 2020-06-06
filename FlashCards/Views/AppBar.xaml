@@ -31,7 +31,7 @@
     </UserControl.Triggers>
     <Grid>
         <Grid Height="50" VerticalAlignment="Top" Background="#FF5C99D6">
-            <TextBlock Text="Cisco Flash Cards" Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding PageTitle,FallbackValue='PageTitle'}" Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Text="Victor K. Hansen" Style="{StaticResource MaterialDesignBody1TextBlock}" VerticalAlignment="Center"/>
                 <materialDesign:PopupBox Margin="8" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
@@ -49,13 +49,14 @@
         <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF31577E">
             <StackPanel>
                 <Grid Height="150" Background="White">
-                    <Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignIconButton}" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="ButtonCloseMenu_Click">
+                    <Button Command="{Binding CloseMenuCommand}" x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignIconButton}" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed">
                         <materialDesign:PackIcon Foreground="#FF1B3861" Kind="ArrowLeft" Width="25" Height="25"/>
                     </Button>
-                    <Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignIconButton}" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ButtonOpenMenu_Click">
+                    <Button Command="{Binding OpenMenuCommand}" x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignIconButton}" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right">
                         <materialDesign:PackIcon Foreground="#FF1B3861" Kind="Menu" Width="25" Height="25"/>
                     </Button>
-                    <Image Height="80" VerticalAlignment="Bottom" Source="pack://application:,,,/Images/aarhustech.png"/>
+                    <Image Height="80" VerticalAlignment="Bottom" Source="pack://application:,,,/Pictures/aarhustech.png"/>
+                    <!--<Image Height="150" VerticalAlignment="Bottom" Source="https://cache.nichehuset.dk/annoncer/jobannoncer/images/annoncoerer/logoer_socialmedia/2573/1575.png"/>-->
                 </Grid>
                 <ListView SelectedIndex="{Binding SelectedPage,Mode=TwoWay}" SelectionMode="Single" Background="Transparent" BorderBrush="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#FF5C99D6">
                     <ListViewItem Height="60" Style="{StaticResource MaterialDesignGridListItem}">

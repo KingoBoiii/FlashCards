@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Diagnostics;
 using System.Windows.Controls;
+using System.Collections.Generic;
 
 namespace FlashCards.ViewModels {
     using FlashCards.Models;
@@ -8,44 +9,57 @@ namespace FlashCards.ViewModels {
     public class FlashCardViewModel : BaseViewModel {
         Grid m_ButtonGrid;
 
-        FlashCard m_FlashCard;
+        List<FlashCard> m_FlashCards;
+        FlashCard m_CurrentFlashCard;
+        List<AnsweredQuestion> m_AnsweredQuestions;
 
         public delegate void OnButtonClickedEvent(FlashCardButton button);
 
         public string QuestionText {
-            get { return m_FlashCard.Question; }
+            get { return m_CurrentFlashCard.Question; }
             set {
-                m_FlashCard.Question = value;
+                m_CurrentFlashCard.Question = value;
                 OnPropertyChanged();
             }
         }
 
+
         public FlashCardViewModel(Grid buttonGrid) {
             this.m_ButtonGrid = buttonGrid;
+            this.m_AnsweredQuestions = new List<AnsweredQuestion>();
+            m_FlashCards = new List<FlashCard>(FlashCardLibrary.HardwareForkortelser);
+
             NewFlashCard();
         }
 
         void NewFlashCard() {
             ClearGrid(m_ButtonGrid);
 
-            System.Random random = new System.Random();
-            int randomNumber = random.Next(0, FlashCardLibrary.HardwareForkortelser.Count);
-            m_FlashCard = FlashCardLibrary.HardwareForkortelser[randomNumber];
-            OnPropertyChanged(nameof(QuestionText));
+            m_FlashCards.Remove(m_CurrentFlashCard);
+            if (m_FlashCards.Count > 0) {
+                System.Random random = new System.Random();
+                int randomNumber = random.Next(0, m_FlashCards.Count);
+                m_CurrentFlashCard = m_FlashCards[randomNumber];
+                OnPropertyChanged(nameof(QuestionText));
 
-            for (int i = 0; i < m_FlashCard.Buttons.Count; i++) {
-                AddButtonToGrid(m_ButtonGrid, m_FlashCard.Buttons[i], i, OnButtonClicked);
+                for (int i = 0; i < m_CurrentFlashCard.Buttons.Count; i++) {
+                    AddButtonToGrid(m_ButtonGrid, m_CurrentFlashCard.Buttons[i], i, OnButtonClicked);
+                }
+            } else {
+                PageViewModel.SetPage(new Views.FlashCardResultsView());
+                Trace.WriteLine("Done!");
             }
         }
 
         void OnButtonClicked(FlashCardButton button) {
-            if(button.IsAnswerRight) {
-                NewFlashCard();
+            if (button.IsAnswerRight) {
+                m_AnsweredQuestions.Add(new AnsweredQuestion() { Question = m_CurrentFlashCard.Question, CorrectAnswer = true });
                 Trace.WriteLine("Correct Answer!");
-                return;
+            } else {
+                m_AnsweredQuestions.Add(new AnsweredQuestion() { Question = m_CurrentFlashCard.Question, CorrectAnswer = false });
+                Trace.WriteLine($"{button.AnswerText}: {button.IsAnswerRight}");
             }
-
-            Trace.WriteLine($"{button.AnswerText}: {button.IsAnswerRight}");
+            NewFlashCard();
         }
 
         void AddButtonToGrid(Grid grid, FlashCardButton buttonInfo, int index, OnButtonClickedEvent callback) {

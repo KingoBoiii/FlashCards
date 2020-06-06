@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 
 namespace FlashCards.ViewModels {
+
     public class BaseViewModel : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
 
@@ -11,4 +12,5 @@ namespace FlashCards.ViewModels {
             }
         }
     }
+
 }
